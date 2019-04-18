@@ -1,7 +1,7 @@
 package main;
 
 public class ValueRegister extends Register {
-	private long value ;
+	private long value=0;
 	
 	public ValueRegister(String name) {
 		super(name);

@@ -39,24 +39,24 @@ public class RegisterFile {
 		registers[31] = new ValueRegister("%ra");
 	}
 
-	public void setValueReg(int i,long value) {
+	public void setValueReg(int i,int value) {
 		((ValueRegister)registers[i]).setValue(value);
 	}
 
-	public long getValueReg(int i) {
+	public int getValueReg(int i) {
 		return ((ValueRegister)registers[i]).getValue();
 	}
-	
+
 	public boolean getC() {
 		return ((StatusRegister)registers[0]).getC();
 	}
-
+	
 	public boolean getN() {
 		return ((StatusRegister)registers[0]).getN();
 	}
 
 	public void setN(boolean n) {
-		 ((StatusRegister)registers[0]).setN(n);
+		((StatusRegister)registers[0]).setN(n);
 	}
 
 	public boolean getV() {
@@ -64,7 +64,7 @@ public class RegisterFile {
 	}
 
 	public void setV(boolean v) {
-		 ((StatusRegister)registers[0]).setV(v);
+		((StatusRegister)registers[0]).setV(v);
 	}
 
 	public boolean getZ() {
@@ -72,11 +72,18 @@ public class RegisterFile {
 	}
 
 	public void setZ(boolean z) {
-		 ((StatusRegister)registers[0]).setZ(z);
+		((StatusRegister)registers[0]).setZ(z);
 	}
-	
+
 	public void setC(boolean c) {
-		 ((StatusRegister)registers[0]).setC(c);
+		((StatusRegister)registers[0]).setC(c);
+	}
+
+	public void resetASPR() {
+		setZ(false);
+		setC(false);
+		setN(false);
+		setV(false);
 	}
 
 

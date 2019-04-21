@@ -91,7 +91,6 @@ public class MainHandler {
 					System.out.println("Instruction : " + fetchedDExEX + " Is Decoding" + ++count);
 					executing.release();
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
@@ -123,8 +122,7 @@ public class MainHandler {
 								int source1 = Integer.parseInt(getSegment(25, 21, instruction));
 								int source2 = Integer.parseInt(getSegment(20, 16, instruction));
 								int shamt = Integer.parseInt(getSegment(10, 6, instruction));
-								result = alu.getResultOfRType(regs.getValueReg(source1), regs.getValueReg(source2),
-										shamt, funct);
+								result = alu.getResultOfRType(regs.getValueReg(source1), regs.getValueReg(source2), shamt, funct, opcode);
 							} else { // Getting result of Immediate Operations
 								int source1 = Integer.parseInt(getSegment(25, 21, instruction));
 								int constant = Integer.parseInt(getSegment(15, 0, instruction));
@@ -227,7 +225,6 @@ public class MainHandler {
 					System.out.println("Instruction : " + instruction + " Is Executing" + ++count);
 					memoryAccessing.release();
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
@@ -266,7 +263,6 @@ public class MainHandler {
 					}
 					writingBack.release();
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 

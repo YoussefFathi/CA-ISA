@@ -3,9 +3,10 @@ package main;
 import java.util.ArrayList;
 
 public class InstructionMemory {
+	
 	Word[] instructionMemory = new Word[64 * 10 ^ 6];
 	private static int PC;
-	private ArrayList reserve = new ArrayList();
+	private ArrayList<Integer> reserve = new ArrayList<Integer>();
 
 	public InstructionMemory() {
 		PC = 0;

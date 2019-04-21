@@ -1,7 +1,9 @@
 package main;
 
 public class RegisterFile {
+	
 	Register[] registers = new Register[32];
+	
 	public RegisterFile() {
 		registers[0] = new StatusRegister("ASPR");
 		registers[1] = new ValueRegister("%v0");
@@ -37,37 +39,45 @@ public class RegisterFile {
 		registers[31] = new ValueRegister("%ra");
 	}
 
-public void setValueReg(int i,long value) {
-	((ValueRegister)registers[i]).setValue(value);
-}
-public long getValueReg(int i) {
-	return ((ValueRegister)registers[i]).getValue();
-}
+	public void setValueReg(int i,long value) {
+		((ValueRegister)registers[i]).setValue(value);
+	}
 
-public boolean getC() {
-	return ((StatusRegister)registers[0]).getC();
-}
-public boolean getN() {
-	return ((StatusRegister)registers[0]).getN();
-}
-public void setN(boolean n) {
-	 ((StatusRegister)registers[0]).setN(n);
-}
-public boolean getV() {
-	return ((StatusRegister)registers[0]).getV();
-}
-public void setV(boolean v) {
-	 ((StatusRegister)registers[0]).setV(v);
-}
-public boolean getZ() {
-	return ((StatusRegister)registers[0]).getZ();
-}
-public void setZ(boolean z) {
-	 ((StatusRegister)registers[0]).setZ(z);
-}
-public void setC(boolean c) {
-	 ((StatusRegister)registers[0]).setC(c);
-}
+	public long getValueReg(int i) {
+		return ((ValueRegister)registers[i]).getValue();
+	}
+	
+	public boolean getC() {
+		return ((StatusRegister)registers[0]).getC();
+	}
+
+	public boolean getN() {
+		return ((StatusRegister)registers[0]).getN();
+	}
+
+	public void setN(boolean n) {
+		 ((StatusRegister)registers[0]).setN(n);
+	}
+
+	public boolean getV() {
+		return ((StatusRegister)registers[0]).getV();
+	}
+
+	public void setV(boolean v) {
+		 ((StatusRegister)registers[0]).setV(v);
+	}
+
+	public boolean getZ() {
+		return ((StatusRegister)registers[0]).getZ();
+	}
+
+	public void setZ(boolean z) {
+		 ((StatusRegister)registers[0]).setZ(z);
+	}
+	
+	public void setC(boolean c) {
+		 ((StatusRegister)registers[0]).setC(c);
+	}
 
 
 }

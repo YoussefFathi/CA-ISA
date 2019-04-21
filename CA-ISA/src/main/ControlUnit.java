@@ -1,6 +1,7 @@
 package main;
 
 public class ControlUnit {
+	
 	private String opCode;
 	boolean[] signals = new boolean[13];
 

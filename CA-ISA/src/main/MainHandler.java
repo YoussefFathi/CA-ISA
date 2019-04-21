@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.concurrent.Semaphore;
 
 public class MainHandler {
+	
 	private ArrayList<Word> instructions = new ArrayList<Word>();
 	private InstructionMemory instMem = new InstructionMemory();
 	private DataMemory dataMem = new DataMemory();
@@ -19,6 +20,7 @@ public class MainHandler {
 	private boolean[] signals;
 	private String fetchedFromDecode;
 	static int count=0;
+	
 	public MainHandler() {
 		this.getUserInstructions();
 		instMem.loadProgramFileToMemory(instructions);
@@ -52,6 +54,7 @@ public class MainHandler {
 			}
 		}
 	};
+	
 	public Thread decodeThread = new Thread() {
 		public void run() {
 			while (true) {
@@ -74,6 +77,7 @@ public class MainHandler {
 
 		}
 	};
+	
 	public Thread executeThread = new Thread() {
 		public void run() {
 			while (true) {
@@ -94,6 +98,7 @@ public class MainHandler {
 			}
 		}
 	};
+	
 	public Thread memoryAccessThread = new Thread() {
 		public void run() {
 //			while (true) {
@@ -108,6 +113,7 @@ public class MainHandler {
 
 		}
 	};
+	
 	public Thread writeBackThread = new Thread() {
 		public void run() {
 
@@ -122,6 +128,6 @@ public class MainHandler {
 	}
 
 	public static void main(String[] args) {
-		MainHandler main = new MainHandler();
+		new MainHandler();
 	}
 }

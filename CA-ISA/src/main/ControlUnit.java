@@ -2,7 +2,7 @@ package main;
 
 public class ControlUnit {
 	private String opCode;
-	boolean[] signals = new boolean[13];
+	boolean[] signals = new boolean[14];
 
 	public ControlUnit() {
 
@@ -27,6 +27,7 @@ public class ControlUnit {
 	}
 
 	public boolean[] evaluateOpCode(String op) {
+		resetSignals();
 		int opNum = Integer.parseInt(op);
 		switch (opNum) {
 		case 0: {
@@ -54,6 +55,7 @@ public class ControlUnit {
 		}
 		case 9: {
 			one(12);
+			one(13);
 			break;
 		}
 		case 10:
@@ -98,6 +100,6 @@ public class ControlUnit {
 /*
  * 0= MemRead 1 = MemToReg 2 = branchCond 3 = branchUncond 4 = jmpReg 5= Mov 6=
  * MoveImmediate 7= RegDestination 8= RegWrite 9= ALUSrc 10= MemWrite 11= BAS 12
- * = AluOperation
+ * = AluOperation 13= CMP
  * 
  */

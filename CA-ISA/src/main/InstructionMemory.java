@@ -29,6 +29,11 @@ public class InstructionMemory {
 		PC = i;
 		return instructionMemory[PC++];
 	}
+	public void adjustPCForBranching(int i) {
+		PC = PC + 1;
+		reserve.add(PC);
+		PC = i;
+	}
 
 	public void loadProgramFileToMemory(ArrayList<Word> program) {
 		int count = 0;

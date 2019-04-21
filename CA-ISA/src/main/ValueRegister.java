@@ -1,18 +1,18 @@
 package main;
 
 public class ValueRegister extends Register {
-	private long value=0;
+	private int value=0;
 	
 	public ValueRegister(String name) {
 		super(name);
 		// TODO Auto-generated constructor stub
 	}
 
-	public long getValue() {
+	public int getValue() {
 		return value;
 	}
 
-	public void setValue(long value) {
+	public void setValue(int value) {
 		this.value = value;
 	}
 

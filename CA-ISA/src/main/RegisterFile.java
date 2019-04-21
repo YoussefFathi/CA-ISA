@@ -37,10 +37,10 @@ public class RegisterFile {
 		registers[31] = new ValueRegister("%ra");
 	}
 
-public void setValueReg(int i,long value) {
+public void setValueReg(int i,int value) {
 	((ValueRegister)registers[i]).setValue(value);
 }
-public long getValueReg(int i) {
+public int getValueReg(int i) {
 	return ((ValueRegister)registers[i]).getValue();
 }
 
@@ -67,6 +67,12 @@ public void setZ(boolean z) {
 }
 public void setC(boolean c) {
 	 ((StatusRegister)registers[0]).setC(c);
+}
+public void resetASPR() {
+	setZ(false);
+	setC(false);
+	setN(false);
+	setV(false);
 }
 
 

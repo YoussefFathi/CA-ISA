@@ -150,6 +150,9 @@ public class ALU {
 		}
 		
 	}
+	public int performAddition(int source1,int constant) {
+		return source1+constant;
+	}
 	
 	public static void main(String[] args) {
 		

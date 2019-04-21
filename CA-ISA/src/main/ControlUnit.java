@@ -34,6 +34,7 @@ public class ControlUnit {
 		case 0: {
 			one(12);
 			zero(9);
+			one(7);
 			break;
 		}
 		case 1:
@@ -44,6 +45,7 @@ public class ControlUnit {
 		case 6: {
 			one(9);
 			one(12);
+			zero(7);
 			break;
 		}
 		case 7: {
@@ -72,11 +74,13 @@ public class ControlUnit {
 			one(0);
 			one(1);
 			one(8);
+			zero(7);
 			break;
 		}
 		case 17: {
 			one(10);
 			zero(8);
+			zero(7);	
 			break;
 		}
 		case 20: {

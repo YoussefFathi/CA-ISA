@@ -51,14 +51,16 @@ public class MainHandler {
 	public Thread fetchThread = new Thread() {
 		public void run() {
 			while (true) {
+
 				try {
 					fetching.acquire();
 					fetched = instMem.fetchNextInstruction();
+					if (fetched != null)
+						System.out.println("INSTRUCTION " + fetched.getWord() + " IS FETCHED " + ++count);
+					fetchedFExDE = fetched;
 					if (fetched == null) {
 						break;
 					}
-					System.out.println("INSTRUCTION " + fetched.getWord() + " IS FETCHED " + ++count);
-					fetchedFExDE = fetched;
 					decoding.release();
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
@@ -72,10 +74,15 @@ public class MainHandler {
 		public void run() {
 			while (true) {
 				try {
+					if (fetchedFExDE == null && fetched == null) {
+						break;
+					}
 					decoding.acquire();
-
-					String opCode = fetchedFExDE.getWord().substring(0, 6);
-					signalsDExEX = cu.evaluateOpCode(opCode);
+					String opCode;
+					if (fetchedFExDE != null) {
+						opCode = fetchedFExDE.getWord().substring(0, 6);
+						signalsDExEX = cu.evaluateOpCode(opCode);
+					}
 					fetchedDExEX = fetchedFExDE;
 					if (fetchedFExDE == null) {
 						break;
@@ -96,6 +103,9 @@ public class MainHandler {
 		public void run() {
 			while (true) {
 				try {
+					if (fetchedDExEX == null && fetchedFExDE == null && fetched == null) {
+						break;
+					}
 					executing.acquire();
 
 					boolean[] signalsEx = signalsDExEX;
@@ -106,7 +116,7 @@ public class MainHandler {
 					boolean branched = false;
 					int opcode = Integer.parseInt(getSegment(31, 26, instruction));
 					if (fetchedDExEX != null) {
-						
+
 						if (signalsEx[12]) { // All Instructions Involving ALU
 							if (!signalsEx[9]) { // Getting result of R Arithmetic operations
 								int funct = Integer.parseInt(getSegment(5, 0, instruction));
@@ -227,9 +237,12 @@ public class MainHandler {
 	public Thread memoryAccessThread = new Thread() {
 		public void run() {
 			while (true) {
+				if (fetchedEXxMA == null && fetchedDExEX == null && fetchedFExDE == null && fetched == null) {
+					break;
+				}
 				try {
 					memoryAccessing.acquire();
-					
+
 					boolean[] signalsMA = signalsEXxMA;
 					Word currentInst = fetchedEXxMA;
 					int temp = resultEXxMA;
@@ -244,7 +257,7 @@ public class MainHandler {
 						int registerContent = regs.getValueReg(source2);
 						dataMem.setWordAtMemory(address, new Word(Integer.toBinaryString(registerContent)));
 					}
-					
+
 					fetchedMAxWB = currentInst;
 					signalsMAxWB = signalsMA;
 					resultMAxWB = temp;
@@ -266,6 +279,10 @@ public class MainHandler {
 		public void run() {
 			while (true) {
 				try {
+					if (fetchedMAxWB == null && fetchedEXxMA == null && fetchedDExEX == null && fetchedFExDE == null
+							&& fetched == null) {
+						break;
+					}
 					writingBack.acquire();
 					if (fetchedMAxWB == null) {
 						break;

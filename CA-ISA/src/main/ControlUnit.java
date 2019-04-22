@@ -29,11 +29,12 @@ public class ControlUnit {
 
 	public boolean[] evaluateOpCode(String op) {
 		resetSignals();
-		int opNum = Integer.parseInt(op);
+		int opNum = Integer.parseInt(op,2);
 		switch (opNum) {
 		case 0: {
 			one(12);
 			zero(9);
+			one(8);
 			one(7);
 			break;
 		}
@@ -46,14 +47,19 @@ public class ControlUnit {
 			one(9);
 			one(12);
 			zero(7);
+			one(8);
 			break;
 		}
 		case 7: {
 			one(5);
+			one(12);
+			one(8);
 			break;
 		}
 		case 8: {
 			one(6);
+			one(8);
+			one(12);
 			break;
 		}
 		case 9: {

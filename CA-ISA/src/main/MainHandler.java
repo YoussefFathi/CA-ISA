@@ -75,6 +75,7 @@ public class MainHandler {
 			while (true) {
 				try {
 					if (fetchedFExDE == null && fetched == null) {
+						fetchedDExEX=null;
 						break;
 					}
 					decoding.acquire();
